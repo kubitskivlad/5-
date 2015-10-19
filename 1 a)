@@ -1,0 +1,26 @@
+#include <iostream> 
+using namespace std;
+void CorrectlyPlacedBrackets(char a[])
+{
+	char b[100]; int start = 0;
+	for (int i = 0; i < strlen(a); i++)
+	{
+		if ((a[i] == '[') || (a[i] == '{') || (a[i] == '('))
+		{
+			b[start] = a[i];
+			start++;
+		}
+		if ((a[i] == ')') && (b[start - 1] == '('))
+			start--;
+		if ((a[i] == '}') && (b[start - 1] == '{'))
+			start--;
+		if ((a[i] == ']') && (b[start - 1] == '['))
+			start--;
+	}
+	if (start == 0) cout << "YES" << endl;
+	else  cout << "NO" << endl;
+}
+int main()
+{
+    return 0;
+}
