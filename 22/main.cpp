@@ -25,7 +25,6 @@ int main()
    assert("max(10,10)", 10);
    return 0;
 }
-}
 int otvet(char* str)
 {
     char min[4] = "min";
