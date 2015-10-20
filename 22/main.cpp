@@ -13,7 +13,7 @@ int otvet(char* str);
 int main()
 {
     char* ver = new char [40];
-    ver = "min(min(5,8),max(min(8,9),min(5,9)))";
+    ver = "min(min(200,30),max(54,max(67,34)))";
     cout<<"otvet= "<<otvet(ver);
 }
 int otvet(char* str)
@@ -22,8 +22,8 @@ int otvet(char* str)
     int k = 0;
     int u = 0;
     int t = 0;
-    int chis [20];
-    char znach[20];
+    int chis [20] = {0};
+    char znach[20] = {0};
     bool a = true;
     for (int i = 0; i < strlen(str); i++)
     {
@@ -31,9 +31,16 @@ int otvet(char* str)
         {
             if (isdigit(str[i]))
             {
-                chis[k] = (str[i] - '0');
+                while ((str[i] != '(') && (str[i] != ')') && (str[i] != ',') && (str[i] != '\0'))
+                {
+                chis[k] = ((chis[k] * 10) + (str[i] - '0'));
+                    i++;
+                }
                 k++;
-                i++;
+                if (str[i] != ')')
+                {
+                    i++;
+                }
             }
             else
             {
