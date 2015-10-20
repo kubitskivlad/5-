@@ -1,28 +1,51 @@
 #include <iostream>
 using namespace std;
-bool CorrectlyPlacedBrackets(char a[])
- {
-	char b[100]; int start = 0; bool solution = true;
-	for (int i = 0; i < strlen(a); i++)
-		 {
-	        if ((a[i] == '[') || (a[i] == '{') || (a[i] == '('))
-			 {
-			b[start] = a[i];
-			start++;
-			}
-		if ((a[i] == ')') && (b[start - 1] == '('))
-			+ start--;
-	    if ((a[i] == '}') && (b[start - 1] == '{'))
-			+ start--;
-		if ((a[i] == ']') && (b[start - 1] == '['))
-			 start--;
-		}
-	if (start == 0) solution = true;
-	else  solution = false;
-	return solution;
-	}
+bool CorrectlyPlacedBrackets(char a[]);
+void inssert(char str[], bool b);
 int main()
- {
-	
-	return 0;
-	}
+{
+    char stt[15] = "([]{(){}})";
+    bool b = true;
+    inssert(stt,b);
+    char stt1[15] = "([]{})";
+    bool n = true;
+    inssert(stt1,n);
+    char stt2[15] = "([]{()}[])";
+    bool m = true;
+    inssert(stt2,m);
+    return 0;
+}
+void inssert(char str[], bool b )
+{
+    bool c = CorrectlyPlacedBrackets(str);
+    if ( c == b)
+    {
+        cout<<" OK "<<endl;
+    }
+    else
+    {
+        cout<<" ne OK "<<endl;
+    }
+}
+bool CorrectlyPlacedBrackets(char a[])
+{
+    char b[100]; int start = 0; bool solution = true;
+    for (int i = 0; i < strlen(a); i++)
+    {
+        if ((a[i] == '[') || (a[i] == '{') || (a[i] == '('))
+        {
+            b[start] = a[i];
+            start++;
+        }
+        if ((a[i] == ')') && (b[start - 1] == '('))
+            start--;
+        if ((a[i] == '}') && (b[start - 1] == '{'))
+            start--;
+        if ((a[i] == ']') && (b[start - 1] == '['))
+            start--;
+    }
+    if (start == 0) solution = true;
+    else  solution = false;
+    return solution;
+}
+
