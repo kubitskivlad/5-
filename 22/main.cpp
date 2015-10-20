@@ -18,12 +18,12 @@ void assert(char str[100], int test)
 int main()
 {
    assert("90", 90);
-	assert("max(4,min(3,5))", 4);
-	assert("min(min(3,5),max(2,max(3,4)))", 3);
-	assert("min(min(8,10),max(3,9))", 8);
-	assert("max(1000,1011)", 1011);
-	assert("max(10,10)", 10);
-	return 0;
+   assert("max(4,min(3,5))", 4);
+   assert("min(min(3,5),max(2,max(3,4)))", 3);
+   assert("min(min(8,10),max(3,9))", 8);
+   assert("max(1000,1011)", 1011);
+   assert("max(10,10)", 10);
+   return 0;
 }
 }
 int otvet(char* str)
