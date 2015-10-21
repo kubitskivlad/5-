@@ -159,7 +159,27 @@ double Solution(char a[])
 	}
 	return num[0];
 }
+void inssert(char b[], double TrueOtvet)
+{
+    if (Solution(b) == TrueOtvet)
+    {
+        cout<<"OK"<<endl;
+    }
+    else
+    {
+        cout<<"ne OK"<<endl;
+    }
+}
 int main()
 {
+char str[20] = "((5+8)*(4-1)-10)";
+    double otvet = 29;
+    inssert(str,otvet);
+    char str1[20] = "((30-6*2)-5)";
+    double otvet1 = 13;
+    inssert(str1,otvet1);
+    char str2[20] = "((10+3-4)*4-6)";
+    double otvet2 = 30;
+    inssert(str2,otvet2);
 	return 0;
 }
