@@ -1,0 +1,165 @@
+#include <iostream>
+using namespace std;
+double Solution(char a[])
+{
+	double num[100]; char operation[100]; int startnum = 0, startOper = 0;
+	for (int i = 0; i <= strlen(a); i++)
+	{
+		if (isdigit(a[i]))
+		{
+			num[startnum] = 0.0;
+			while (isdigit(a[i]))
+			{
+				num[startnum] = num[startnum] * 10 + (a[i] - '0');
+				i++;
+			}
+			startnum++;
+		}
+		if (a[i] == '(')  operation[startOper++] = '(';
+		if ((a[i] == '+') || (a[i] == '-'))
+		{
+			if (startOper > 0)
+			{
+				startOper--;
+				while ((operation[startOper] != '(') && (startOper >= 0))
+				{
+					if (operation[startOper] == '+')
+					{
+						num[startnum - 2] = num[startnum - 2] + num[startnum - 1];
+						startnum--;
+					}
+					if (operation[startOper] == '-')
+					{
+						num[startnum - 2] = num[startnum - 2] - num[startnum - 1];
+						startnum--;
+					}
+					if (operation[startOper] == '*')
+					{
+						num[startnum - 2] = num[startnum - 2] * num[startnum - 1];
+						startnum--;
+					}
+					if (operation[startOper] == '/')
+					{
+						num[startnum - 2] = num[startnum - 2] / num[startnum - 1];
+						startnum--;
+					}
+					startOper--;
+				}
+				if (a[i] == '+')
+				{
+					operation[++startOper] = '+';
+					startOper++;
+				}
+				if (a[i] == '-')
+				{
+					operation[++startOper] = '-';
+					startOper++;
+				}
+			}
+			else
+			{
+				if (a[i] == '+') operation[startOper++] = '+';
+				if (a[i] == '-') operation[startOper++] = '-';
+			}
+		}
+		if ((a[i] == '*') || (a[i] == '/'))
+		{
+			if (startOper > 0)
+			{
+				startOper--;
+				while ((operation[startOper] != '(') && (operation[startOper] != '+') && (operation[startOper] != '-') && (startOper >= 0))
+				{
+					if (operation[startOper] == '*')
+					{
+						num[startnum - 2] = num[startnum - 2] * num[startnum - 1];
+						startnum--;
+					}
+					if (operation[startOper] == '/')
+					{
+						num[startnum - 2] = num[startnum - 2] / num[startnum - 1];
+						startnum--;
+					}
+					startOper--;
+				}
+				if (a[i] == '*')
+				{
+					operation[++startOper] = '*';
+					startOper++;
+				}
+				if (a[i] == '/')
+				{
+					operation[++startOper] = '/';
+					startOper++;
+				}
+			}
+			else
+			{
+				if (a[i] == '*') operation[startOper++] = '*';
+				if (a[i] == '/') operation[startOper++] = '/';
+			}
+		}
+		if (a[i] == ')')
+		{
+			startOper--;
+			while (operation[startOper] != '(')
+			{
+				if (operation[startOper] == '+')
+				{
+					num[startnum - 2] = num[startnum - 2] + num[startnum - 1];
+					startnum--;
+
+				}
+				if (operation[startOper] == '-')
+				{
+					num[startnum - 2] = num[startnum - 2] - num[startnum - 1];
+					startnum--;
+				}
+				if (operation[startOper] == '*')
+				{
+					num[startnum - 2] = num[startnum - 2] * num[startnum - 1];
+					startnum--;
+				}
+				if (operation[startOper] == '/')
+				{
+					num[startnum - 2] = num[startnum - 2] / num[startnum - 1];
+					startnum--;
+				}
+				startOper--;
+			}
+		}
+		if (a[i] == '\0')
+		{
+			startOper--;
+			while (startOper >= 0)
+			{
+				if (operation[startOper] == '+')
+				{
+					num[startnum - 2] = num[startnum - 2] + num[startnum - 1];
+					startnum--;
+				}
+				if (operation[startOper] == '-')
+				{
+					num[startnum - 2] = num[startnum - 2] - num[startnum - 1];
+					startnum--;
+				}
+				if (operation[startOper] == '*')
+				{
+					num[startnum - 2] = num[startnum - 2] * num[startnum - 1];
+					startnum--;
+				}
+				if (operation[startOper] == '/')
+				{
+					num[startnum - 2] = num[startnum - 2] / num[startnum - 1];
+					startnum--;
+				}
+				startOper--;
+
+			}
+		}
+	}
+	return num[0];
+}
+int main()
+{
+	return 0;
+}
